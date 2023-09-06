@@ -22,7 +22,7 @@ interface Turmas {
 }
 
 async function getData(): Promise<Turmas[]> {
-  const response = await fetch("http://localhost:3000/api/cursos", {
+  const response = await fetch(`${process.env.URL}/api/cursos`, {
     next: { revalidate: 60 * 60 * 24 },
   });
 
@@ -30,8 +30,7 @@ async function getData(): Promise<Turmas[]> {
     throw new Error("Falha ao carregar dados...");
   }
 
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
 ///PÁGINA
