@@ -10,12 +10,12 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const newCourse: Course = await req.json();
-  // const createdCourse: Course = await client.course.create({
-  //   data: newCourse,
-  // });
+  await client.course.create({
+    data: newCourse,
+  });
 
   return NextResponse.json(newCourse, {
     status: 201,
-    statusText: "Criado novo curso",
+    statusText: "created",
   });
 }

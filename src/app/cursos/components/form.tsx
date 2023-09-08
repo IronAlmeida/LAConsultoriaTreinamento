@@ -13,9 +13,10 @@ export default function Form() {
       body: JSON.stringify({
         nome: e.target.elements.nome.value,
         investimento: e.target.elements.investimento.value,
-        carga: e.target.elements.carga.value,
+        cargaHoraria: e.target.elements.cargaHoraria.value,
         datas: e.target.elements.datas.value,
         horario: e.target.elements.horario.value,
+        imagem: e.target.elements.imagem.value,
       }),
     })
       .then(() => {
@@ -45,8 +46,8 @@ export default function Form() {
       <input
         className="border mt-8 outline-none pl-4 py-2"
         type="text"
-        name="carga"
-        id="carga"
+        name="cargaHoraria"
+        id="cargaHoraria"
         placeholder="Carga horária. (Ex: 12 horas)"
       />
       <input
@@ -62,6 +63,13 @@ export default function Form() {
         name="horario"
         id="horario"
         placeholder="Horarios. Ex: 19:00 ás 22:00"
+      />
+      <input
+        className="border mt-8 outline-none pl-4 py-2"
+        type="text"
+        name="imagem"
+        id="imagem"
+        placeholder="Url da capa"
       />
       <Button type="submit" className="mt-8">
         Enviar

@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { Button } from "../../components/ui/button";
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
@@ -19,6 +21,7 @@ interface Turmas {
   investimento: string;
   datas: string;
   horario: string;
+  imagem: string;
 }
 
 async function getData(): Promise<Turmas[]> {
@@ -38,12 +41,22 @@ export default async function Cursos() {
   const cursos = await getData();
 
   return (
-    <>
+    <body className="w-3/4 m-auto">
       <h1>Página Cursos</h1>
-      <div className="w-3/4 m-auto flex flex-col justify-between">
+      <div className="w-3/4 m-auto flex flex-wrap justify-between">
         {cursos.map((dados, index) => (
-          <Card className="w-1/2 mx-auto mt-8" key={index}>
-            <CardHeader>
+          <Card
+            className="flex flex-col w-[360px] mx-auto mt-8 border border-[#0F172A80] rounded-3xl"
+            key={index}
+          >
+            <Image
+              src={dados.imagem}
+              alt={dados.nome}
+              width={360}
+              height={205}
+              className="border rounded-3xl"
+            />
+            <CardHeader className="text-center">
               <CardTitle>{dados.nome}</CardTitle>
             </CardHeader>
             <CardContent>
@@ -52,20 +65,33 @@ export default async function Cursos() {
               <p>Data(s): {dados.datas}</p>
               <p>Horário: {dados.horario}</p>
             </CardContent>
+            <CardFooter className="text-center">
+              <p>
+                Local:
+                <br />
+                <strong>
+                  Sede LA Consultoria e Treinamento <br /> Rua Brasílio Martinho
+                  Vale, 86 - Farolândia - 49031-010
+                </strong>
+              </p>
+            </CardFooter>
+            <Button
+              variant="outline"
+              className="w-1/2 m-auto mb-2 text-white bg-[#DA315F] rounded-full hover:bg-[#293548] hover:text-white"
+            >
+              Inscrever-se
+            </Button>
           </Card>
         ))}
-
-        <div className="m-auto mt-8">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Adicionar curso</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <Form />
-            </DialogContent>
-          </Dialog>
-        </div>
       </div>
-    </>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Adicionar curso</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <Form />
+        </DialogContent>
+      </Dialog>
+    </body>
   );
 }
