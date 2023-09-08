@@ -17,4 +17,7 @@ model Course {
   cargaHoraria String
   datas        String
   horario      String
+  imagem       String
+
+  @@map("course")
 }
