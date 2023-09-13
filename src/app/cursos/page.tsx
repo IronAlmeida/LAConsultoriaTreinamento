@@ -13,6 +13,7 @@ import {
   DialogTrigger,
 } from "../../components/ui/dialog";
 import Form from "./components/form";
+import Btn from "../../components/button";
 
 interface Turmas {
   id: number;
@@ -60,6 +61,7 @@ export default async function Cursos() {
               <CardTitle>{dados.nome}</CardTitle>
             </CardHeader>
             <CardContent>
+              <p>Código da turma: {dados.id}</p>
               <p>Investimento: {dados.investimento}</p>
               <p>Carga Horária: {dados.cargaHoraria}</p>
               <p>Data(s): {dados.datas}</p>
@@ -67,11 +69,11 @@ export default async function Cursos() {
             </CardContent>
             <CardFooter className="text-center">
               <p>
-                Local:
+                Endereço:
                 <br />
                 <strong>
-                  Sede LA Consultoria e Treinamento <br /> Rua Brasílio Martinho
-                  Vale, 86 - Farolândia - 49031-010
+                  Rua Brasílio Martinho Vale, 86 - Farolândia - 49031-010 <br />
+                  Sede LA Consultoria e Treinamento
                 </strong>
               </p>
             </CardFooter>
@@ -81,9 +83,12 @@ export default async function Cursos() {
             >
               Inscrever-se
             </Button>
+            {/* Botão remover curso visivel apenas para usuário ADM */}
+            <Btn name="Remover curso" codigo={dados.id} />
           </Card>
         ))}
       </div>
+      {/* Dialog visivel apenas para usuário ADM */}
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="outline">Adicionar curso</Button>
