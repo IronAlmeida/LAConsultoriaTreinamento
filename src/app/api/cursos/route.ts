@@ -2,7 +2,7 @@ import client from "../../../lib/prisma/client";
 import { Course } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-// Metodo para buscar a lista de cursos e lista de espera do banco de dados
+// Metodo para buscar a lista de cursos e a lista de espera do banco de dados
 export async function GET() {
   const course: Course[] = await client.course.findMany();
 
